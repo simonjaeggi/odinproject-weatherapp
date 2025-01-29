@@ -1,0 +1,49 @@
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+
+# Build directories
+dist/
+
+# Environment variables
+.env
+.env.test
+.env.local
+.env.*.local
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# NPM package lock file (optional, if not versioning)
+package-lock.json
+
+# Coverage directory used by testing tools like Jest
+coverage/
+
+# Webpack cache
+.webpack/
+
+# ESLint cache
+.eslintcache
+
+# Prettier files
+.prettiercache
+
+# Local private key files
+*.pem
