@@ -31,6 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: end;
+  align-items: center;
 }
 .content {
   grid-area: content;
@@ -40,8 +41,8 @@ body {
   overflow: auto;
 }
 .searchbar_container {
-  display: grid;
   width: 100%;
+  display: grid;
   align-content: space-around;
   padding: 5px;
   margin-bottom: 1rem;
@@ -49,29 +50,31 @@ body {
 .searchbar {
   grid-area: 1 / 1;
   padding: 5px 40px 5px 15px;
-
   border: 1px solid #00000040;
   font-size: 1.5rem;
   border-radius: 25px;
   height: 2em;
 }
-.searchbar_button {
-  grid-area: 1 /1;
-  width: 40px;
-  height: 40px;
-  justify-self: end;
-  align-self: center;
-  margin-right: 5px;
-}
+
 
 .button {
   background-color: #159680;
   color: #ffffff;
-  font-size: 1rem;
-  border-radius: 50%;
   border: 5px solid transparent;
   cursor: pointer;
 }
+.searchbar_button {
+  grid-area: 1 /1;
+  width: 60px;
+  height: 40px;
+  justify-self: end;
+  align-self: center;
+  margin-right: 0.3rem;
+  margin-left: 1rem;
+  font-size: 2rem;
+  border-radius: 40px;
+}
+
 
 .button:hover {
   background-color: #0bb8b8;
@@ -163,4 +166,10 @@ body {
 .subtitle {
 margin-top: 10px; 
 font-weight: 700;
+}
+.pagetitle{
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 2rem;
 }
