@@ -1,12 +1,12 @@
-async function fetchWeather(location, unitGroup, timeframe) {
+async function fetchWeather(location, unitGroup, timemode) {
   try {
     validateLocation(location);
     validateUnitGroup(unitGroup);
-    validateTimeframe(timeframe);
+    validateTimemode(timemode);
   } catch (error) {
     return Promise.reject(error);
   }
-  const query = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=${unitGroup}&include=${timeframe}&key=${process.env.VISUALCROSSING}&contentType=json`
+  const query = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=${unitGroup}&include=${timemode}&key=${process.env.VISUALCROSSING}&contentType=json`
   console.log(query);
   return fetch(query)
   .then((response) => {
@@ -30,10 +30,10 @@ function validateUnitGroup(unitGroup) {
   }
 }
 
-function validateTimeframe(timeframe) {
+function validateTimemode(timemode) {
   const validUnits = new Set(["days", "hours"]);
-  if (!validUnits.has(timeframe)) {
-    throw new Error("Invalid timeframe. Use 'days' or 'hours'.");
+  if (!validUnits.has(timemode)) {
+    throw new Error("Invalid timemode. Use 'days' or 'hours'.");
   }
 }
 
