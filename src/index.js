@@ -1,3 +1,5 @@
-console.log("something");
+import "./styles.css";
+import { getLocationWeather } from "./weather";
 
+getLocationWeather();
 
