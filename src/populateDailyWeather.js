@@ -57,11 +57,7 @@ const populateDailyWeather = (data) => {
             sun,
         ].forEach((element) => infoContainer.appendChild(element));
 
-        dailyContainer.appendChild(date);
-        dailyContainer.appendChild(icon);
-        dailyContainer.appendChild(infoContainer);
-        dailyContainer.appendChild(description);
-
+        dailyContainer.append(date, icon, infoContainer, description);
         content.appendChild(dailyContainer);
     });
 };
