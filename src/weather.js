@@ -12,8 +12,7 @@ export async function fetchWeather(location, unitGroup, timemode) {
     apiUrl.searchParams.append("contentType", "json");
 
     const response = await fetch(apiUrl);
-    const result = await response.json();
-    return result;
+    return response;
 }
 
 function validateLocation(location) {
