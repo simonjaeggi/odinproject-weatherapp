@@ -1,7 +1,7 @@
 const icons = require.context("./icons", false, /\.(jpg|jpeg|png|gif|svg)$/);
 const content = document.querySelector(".content");
 
-const populateDailyWeather = (data) => {
+export const populateDailyWeather = (data) => {
     const daysAfterToday = data.days.splice(1);
 
     daysAfterToday.forEach((day) => {
@@ -61,5 +61,3 @@ const populateDailyWeather = (data) => {
         content.appendChild(dailyContainer);
     });
 };
-
-module.exports = { populateDailyWeather };
