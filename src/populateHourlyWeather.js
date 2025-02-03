@@ -19,9 +19,10 @@ const populateHourlyWeather = (data) => {
     const currentHour = new Date().getHours();
     const today = data.days[0];
     const tomorrow = data.days[1];
-    const next48Hours = Object.values(today.hours).concat(
-        Object.values(tomorrow.hours)
-    );
+    const next48Hours = [
+        ...Object.values(today.hours),
+        ...Object.values(tomorrow.hours),
+      ];
     const next12Hours = next48Hours.splice(currentHour, 12);
 
     next12Hours.forEach((hour) => {
