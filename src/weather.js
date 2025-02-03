@@ -1,4 +1,4 @@
-async function fetchWeather(location, unitGroup, timemode) {
+export async function fetchWeather(location, unitGroup, timemode) {
     validateLocation(location);
     validateUnitGroup(unitGroup);
     validateTimemode(timemode);
@@ -35,5 +35,3 @@ function validateTimemode(timemode) {
         throw new Error("Invalid timemode. Use 'days' or 'hours'.");
     }
 }
-
-module.exports = { fetchWeather };
