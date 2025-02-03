@@ -1,7 +1,7 @@
 const icons = require.context("./icons", false, /\.(jpg|jpeg|png|gif|svg)$/);
 const content = document.querySelector(".content");
 
-const populateHourlyWeather = (data) => {
+export const populateHourlyWeather = (data) => {
     const hourlyContainer = document.createElement("div");
     hourlyContainer.classList.add("card");
 
@@ -22,7 +22,7 @@ const populateHourlyWeather = (data) => {
     const next48Hours = [
         ...Object.values(today.hours),
         ...Object.values(tomorrow.hours),
-      ];
+    ];
     const next12Hours = next48Hours.splice(currentHour, 12);
 
     next12Hours.forEach((hour) => {
@@ -41,4 +41,3 @@ const populateHourlyWeather = (data) => {
         weatherHoursContainer.appendChild(hourContainer);
     });
 };
-module.exports = { populateHourlyWeather };
