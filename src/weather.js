@@ -3,9 +3,15 @@ async function fetchWeather(location, unitGroup, timemode) {
     validateUnitGroup(unitGroup);
     validateTimemode(timemode);
 
-    const query = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=${unitGroup}&include=${timemode}&key=${process.env.VISUALCROSSING}&contentType=json`;
-    console.log(query);
-    return fetch(query).then((response) => {
+    const apiUrl = new URL(
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}`
+    );
+    apiUrl.searchParams.append("unitGroup", unitGroup);
+    apiUrl.searchParams.append("include", timemode);
+    apiUrl.searchParams.append("key", process.env.VISUALCROSSING);
+    apiUrl.searchParams.append("contentType", "json");
+    
+    return fetch(apiUrl).then((response) => {
         if (!response.ok) {
             throw new Error(
                 `API request failed with status ${response.status}`
