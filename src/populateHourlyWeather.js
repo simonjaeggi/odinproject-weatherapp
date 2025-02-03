@@ -37,10 +37,7 @@ const populateHourlyWeather = (data) => {
         icon.src = icons(`./${hour.icon}.svg`);
         time.textContent = `${hour.datetime.split(":").splice(0, 2).join(":")}`;
 
-        hourContainer.appendChild(temp);
-        hourContainer.appendChild(icon);
-        hourContainer.appendChild(time);
-
+        hourContainer.append(temp, icon, time);
         weatherHoursContainer.appendChild(hourContainer);
     });
 };
