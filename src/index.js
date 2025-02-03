@@ -9,21 +9,26 @@ const searchbar = document.querySelector("#searchbar");
 
 const asyncPopulatePage = async (location, unitGroup) => {
     try {
-      const weatherData = await fetchWeather(location, unitGroup, "hours");
-      if (weatherData) {
-        populateHourlyWeather(weatherData);
-        populateDailyWeather(weatherData);
-  
-        searchbar.value = weatherData.resolvedAddress;
-      } else {
-        renderMessage(`
-                Location ${location} not found, sorryyyy 😞
+        const weatherResponse = await fetchWeather(
+            location,
+            unitGroup,
+            "hours"
+        );
+        try {
+            const weatherData = await weatherResponse.json();
+            populateHourlyWeather(weatherData);
+            populateDailyWeather(weatherData);
+            searchbar.value = weatherData.resolvedAddress;
+        } catch (error) {
+            renderMessage(`
+                    Location ${location} not found. Try something else!
                 `);
-      }
+            console.error("Error parsing weather data:", error.message);
+        }
     } catch (error) {
-      console.error("Error fetching weather data:", error.message);
+        console.error("Error fetching weather data:", error.message);
     }
-  };
+};
 
 const purgePage = () => {
     content.replaceChildren();
@@ -31,9 +36,9 @@ const purgePage = () => {
 
 const renderMessage = (message) => {
     let messageContainer = document.querySelector("#messageContainer");
-    if(messageContainer){
+    if (messageContainer) {
         messageContainer.replaceChildren();
-    }else{
+    } else {
         messageContainer = document.createElement("div");
         messageContainer.classList.add("card");
         messageContainer.id = "messageContainer";
