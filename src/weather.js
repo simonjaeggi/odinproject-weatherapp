@@ -2,27 +2,26 @@ export async function fetchWeather(location, unitGroup, timemode) {
     validateLocation(location);
     validateUnitGroup(unitGroup);
     validateTimemode(timemode);
-
+  
     const apiUrl = new URL(
-        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}`
     );
+  
     apiUrl.searchParams.append("unitGroup", unitGroup);
     apiUrl.searchParams.append("include", timemode);
     apiUrl.searchParams.append("key", process.env.VISUALCROSSING);
     apiUrl.searchParams.append("contentType", "json");
     let response;
-
-    try {
-        response = await fetch(apiUrl);    
-    } catch (error) {
-        console.log("new error");
-        console.log(error);
+    let data;
+  
+    response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(response.status);
     }
-    
-    // const data = await response.json();
-
-    return response;
-}
+    data = await response.json();
+  
+    return data;
+  }
 
 function validateLocation(location) {
     if (typeof location !== typeof "string" || location.trim().length === 0) {

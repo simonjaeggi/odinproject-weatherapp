@@ -9,24 +9,24 @@ const searchbar = document.querySelector("#searchbar");
 
 const asyncPopulatePage = async (location, unitGroup) => {
     try {
-        const weatherData = await fetchWeather(location, unitGroup, "hours");
-        // populateHourlyWeather(weatherData);
-        // populateDailyWeather(weatherData);
-        // searchbar.value = weatherData.resolvedAddress;
+      const weatherData = await fetchWeather(location, unitGroup, "hours");
+      populateHourlyWeather(weatherData);
+      populateDailyWeather(weatherData);
+      searchbar.value = weatherData.resolvedAddress;
     } catch (error) {
-        // console.error("Error fetching weather data:", error.message);
-        console.log(error);
-        if (error.code === 400) {
-            renderMessage(`
-                Location ${location} not found. Try something else!
-            `);
-        } else {
-            renderMessage(`
-                Error occured, try again later!
-            `);
-        }
+      console.error(error);
+  
+      if (+error.message === 400) {
+        renderMessage(`
+                  Location ${location} not found. Try something else!
+              `);
+      } else {
+        renderMessage(`
+                  Error occured, try again later!
+              `);
+      }
     }
-};
+  };
 
 const purgePage = () => {
     content.replaceChildren();
