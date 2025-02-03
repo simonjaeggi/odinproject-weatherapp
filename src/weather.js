@@ -17,7 +17,7 @@ async function fetchWeather(location, unitGroup, timemode) {
 }
 
 function validateLocation(location) {
-    if (typeof location !== "string" || location.trim().length === 0) {
+    if (typeof location !== typeof "string" || location.trim().length === 0) {
         throw new Error("Invalid location. Must be a non-empty string.");
     }
 }
