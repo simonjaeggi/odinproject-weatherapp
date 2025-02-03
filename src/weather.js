@@ -10,8 +10,17 @@ export async function fetchWeather(location, unitGroup, timemode) {
     apiUrl.searchParams.append("include", timemode);
     apiUrl.searchParams.append("key", process.env.VISUALCROSSING);
     apiUrl.searchParams.append("contentType", "json");
+    let response;
 
-    const response = await fetch(apiUrl);
+    try {
+        response = await fetch(apiUrl);    
+    } catch (error) {
+        console.log("new error");
+        console.log(error);
+    }
+    
+    // const data = await response.json();
+
     return response;
 }
 
