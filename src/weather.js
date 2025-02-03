@@ -10,15 +10,10 @@ async function fetchWeather(location, unitGroup, timemode) {
     apiUrl.searchParams.append("include", timemode);
     apiUrl.searchParams.append("key", process.env.VISUALCROSSING);
     apiUrl.searchParams.append("contentType", "json");
-    
-    return fetch(apiUrl).then((response) => {
-        if (!response.ok) {
-            throw new Error(
-                `API request failed with status ${response.status}`
-            );
-        }
-        return response.json();
-    });
+
+    const response = await fetch(apiUrl);
+    const result = await response.json();
+    return result;
 }
 
 function validateLocation(location) {
